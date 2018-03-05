@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 const server = require('../src/server/index');
 const knex = require('../src/server/db/connection');
 
-describe('routes : movies', () => {
+describe('routes : users', () => {
 
   beforeEach(() => {
     return knex.migrate.rollback()
@@ -39,7 +39,7 @@ describe('routes : movies', () => {
   });
 
   describe('GET /api/v1.0/users/:id', () => {
-    it('should respond with a single movie', (done) => {
+    it('should respond with a single user data', (done) => {
       chai.request(server)
       .get('/api/v1.0/users/1')
       .end((err, res) => {
