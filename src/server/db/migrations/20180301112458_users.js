@@ -10,10 +10,10 @@ exports.up = (knex, Promise) => {
       table.string('email').notNullable().unique();
       table.date('registration_date').notNullable();
     })
-    .createTable('beer', (table) => {
+    .createTable('batches', (table) => {
       table.integer('batch_number').notNullable().unique().primary();
-      table.integer('beer_user_id').references('user_id').inTable('users');
-      table.string('beer_name').notNullable();
+      table.integer('batch_user_id').references('user_id').inTable('users');
+      table.string('batch_name').notNullable();
       table.date('bottled_on');
       table.float('quantity_litres');
       table.integer('quantity_bottles');
@@ -23,6 +23,6 @@ exports.up = (knex, Promise) => {
 
 exports.down = (knex, Promise) => {
   return knex.schema
-    .dropTable('beer')
+    .dropTable('batches')
     .dropTable('users');
 };
