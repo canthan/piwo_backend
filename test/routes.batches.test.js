@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 const server = require('../src/server/index');
 const knex = require('../src/server/db/connection');
 
-describe('routes : beer', () => {
+describe('routes : batches', () => {
 
   beforeEach(() => {
     return knex.migrate.rollback()
@@ -20,10 +20,10 @@ describe('routes : beer', () => {
     return knex.migrate.rollback();
   });
 
-  describe('GET /api/v1.0/beer', () => {
-    it('should return all beer', (done) => {
+  describe('GET /api/v1.0/batches', () => {
+    it('should return all batches', (done) => {
       chai.request(server)
-        .get('/api/v1.0/beer')
+        .get('/api/v1.0/batches')
         .end((err, res) => {
           should.not.exist(err);
           res.status.should.equal(200);
@@ -31,17 +31,17 @@ describe('routes : beer', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(4);
           res.body.data[0].should.include.keys(
-            'batch_number', 'beer_name', 'beer_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
+            'batch_number', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
           );
           done();
         });
     });
   });
 
-  describe('GET /api/v1.0/beer/user_id', () => {
-    it('should return all beer', (done) => {
+  describe('GET /api/v1.0/batches/user_id', () => {
+    it('should return all batches', (done) => {
       chai.request(server)
-        .get('/api/v1.0/beer/1')
+        .get('/api/v1.0/batches/1')
         .end((err, res) => {
           should.not.exist(err);
           res.status.should.equal(200);
@@ -49,7 +49,7 @@ describe('routes : beer', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(4);
           res.body.data[0].should.include.keys(
-            'batch_number', 'beer_name', 'beer_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
+            'batch_number', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
           );
           done();
         });
