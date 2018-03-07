@@ -2,23 +2,48 @@ const knex = require('../connection');
 
 function getAllStashes() {
   return knex('stashes')
-  .select('*');
+    .select('*');
 }
 
-function getStashesOfUser(user_id) {
+function getStashById(stash_id) {
   return knex('stashes')
-  .select('*')
-  .where({stashes_user_id: parseInt(user_id)});
+    .select('*')
+    .where({ stash_id: parseInt(stash_id) });
 }
 
 function getStashesOfBatch(user_id, batch_id) {
   return knex('stashes')
-  .select('*')
-  .where({batch_number: parseInt(batch_id), stashes_user_id: parseInt(user_id)});
+    .select('*')
+    .where({ batch_number: parseInt(batch_id), stashes_user_id: parseInt(user_id) });
+}
+
+function updateStashes(user_id, batch_id, stashes) {
+  let updatedStash;
+  stashes.forEach((stash) => {
+    updatedStash = updateStash(stash.stash_id, stash);  
+  });
+  return updatedStash;
+}
+
+function updateStash(stash_id, stash) {
+  return knex('stashes')
+    .update(stash)
+    .where({ stash_id: parseInt(stash.stash_id) })
+    .returning('*');
+}
+
+function insertStash(stash) {
+  return knex('stashes')
+  .insert(stash)
+  .returning('*');
 }
 
 module.exports = {
+  insertStash,
   getAllStashes,
   getStashesOfBatch,
-  getStashesOfUser,
+  // getStashesOfUser,
+  getStashById,
+  updateStashes,
+  updateStash,
 };

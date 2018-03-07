@@ -31,7 +31,7 @@ router.get(`${BASE_URL}/:user_id`, async (ctx) => {
       })
     });
     output_data['batches'] = user_batches;
-    
+
     ctx.body = {
       status: 'success',
       data: output_data
