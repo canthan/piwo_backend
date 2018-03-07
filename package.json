@@ -6,6 +6,7 @@
     "start": "nodemon ./src/server/index.js",
     "test": "node ./node_modules/mocha/bin/_mocha",
     "migrate": "knex migrate:rollback && knex migrate:latest --env development",
+    "seed:save": "node ./src/server/db/saveSeeds.js",
     "seed": "knex seed:run --env development",
     "db:up": "npm run migrate && npm run seed && npm start"
   },
@@ -17,8 +18,11 @@
     "nodemon": "^1.17.1"
   },
   "dependencies": {
+    "jsonfile": "^4.0.0",
     "knex": "^0.14.4",
     "koa": "^2.5.0",
+    "koa-body": "^2.5.0",
+    "koa-cors": "0.0.16",
     "koa-router": "^7.4.0",
     "pg": "^7.4.1"
   }
