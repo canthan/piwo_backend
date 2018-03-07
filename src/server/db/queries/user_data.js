@@ -14,7 +14,7 @@ function getUserBatches(user_id) {
 
 function getUserStashes(user_id) {
   return knex('stashes')
-    .select('batch_number', 'stash_name', 'b050', 'b040', 'b033')
+    .select('batch_number', 'stash_name', 'stash_id', 'b050', 'b040', 'b033')
     .where({ stashes_user_id: parseInt(user_id) });
 }
 
