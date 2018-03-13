@@ -31,7 +31,7 @@ describe('routes : batches', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(4);
           res.body.data[0].should.include.keys(
-            'batch_number', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
+            'batch_id', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
           );
           done();
         });
@@ -49,7 +49,7 @@ describe('routes : batches', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(4);
           res.body.data[0].should.include.keys(
-            'batch_number', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
+            'batch_id', 'batch_name', 'batch_user_id', 'bottled_on', 'quantity_bottles', 'quantity_crates', 'quantity_litres'
           );
           done();
         });

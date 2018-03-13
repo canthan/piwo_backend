@@ -31,7 +31,7 @@ describe('routes : stashes', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(5);
           res.body.data[0].should.include.keys(
-            'batch_number', 'stashes_user_id', 'stash_name', 'b033', 'b040', 'b050',
+            'batch_id', 'stash_user_id', 'stash_name', 'b033', 'b040', 'b050',
           );
           done();
         });
@@ -49,10 +49,38 @@ describe('routes : stashes', () => {
           res.body.status.should.eql('success');
           // res.body.data.length.should.eql(5);
           res.body.data[0].should.include.keys(
-            'batch_number', 'stash_name', 'items'
+            'batch_id', 'stash_name', 'items'
           );
           done();
         });
     });
   }); 
+
+  describe('PUT /api/v1.0/stashes/:stash_id', () => {
+    it('should return the stashes that were updated', (done) => {
+      knex('stashes')
+      .select('*')
+      .where({ stash_id: 1 })
+      .then((stashes) => {
+        const stashesObject = stashes[0];
+        chai.request(server)
+        .put(`/api/v1.0/stashes/1`)
+        .send({
+          b050: 50
+        })
+        .end((err, res) => {
+          should.not.exist(err);
+          // res.status.should.equal(200);
+          // res.type.should.equal('application/json');
+          // res.body.status.should.eql('success');
+          // res.body.data[0].should.include.keys(
+          //   'batch_id', 'stash_name', 'items'
+          // );
+          // const newStashesObject = res.body.data[0];
+          // newStashesObject.items.b050.should.not.eql(stashesObject.items.b050);
+          done();
+        });
+      });
+    });
+  });
 });
