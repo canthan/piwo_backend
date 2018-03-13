@@ -70,8 +70,10 @@ router.put(`${BASE_URL}/:user_id/:batch_id`, koaBody(), async (ctx) => {
 
 router.post(`${BASE_URL}/:user_id/:batch_id`, koaBody(), async (ctx) => {
   try {
-    console.log(ctx.request.body.stashes);
-    const stash = await queries.insertStash(ctx.request.body.stashes);
+    let stash = await queries.insertStash(ctx.request.body.stashes);
+    stash = JSON.parse(JSON.stringify(...stash));
+    delete stash.stash_user_id;
+    stash = [common.formatSingleStash(stash)];
     if (stash.length) {
       ctx.status = 201;
       ctx.body = {

@@ -16,15 +16,16 @@ router.get(BASE_URL, async (ctx) => {
   }
 })
 
-router.get(`${BASE_URL}/:id`, async (ctx) => {
+router.get(`${BASE_URL}/:user_id`, async (ctx) => {
   try {
-    const user = await queries.getSingleUser(ctx.params.id);
+    let user = await queries.getSingleUser(ctx.params.user_id);
+    user = JSON.parse(JSON.stringify(user))[0];
     ctx.body = {
       status: 'success',
       data: user
     };
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 })
 

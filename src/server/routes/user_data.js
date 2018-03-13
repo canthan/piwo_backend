@@ -25,7 +25,7 @@ router.get(`${BASE_URL}/:user_id`, async (ctx) => {
     user_batches.forEach((batch, index) => {
       user_batches[index]['stashes'] = [];
       formatted_stashes.forEach((stash) => {
-        if (batch.batch_number === stash.batch_number) {
+        if (batch.batch_id === stash.batch_id) {
           user_batches[index].stashes.push(stash);
         }
       })
@@ -36,8 +36,8 @@ router.get(`${BASE_URL}/:user_id`, async (ctx) => {
       status: 'success',
       data: output_data
     };
-  } catch (err) {
-    console.error(err)
+  } catch (error) {
+    console.error(error)
   }
 })
 
