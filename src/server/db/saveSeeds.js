@@ -24,5 +24,8 @@ async function writeBatchesSeed() {
 }
 async function writeStashesSeed() {
   const stashes_data = await queries_stashes.getAllStashes();
+  stashes_data.forEach((stash) => {
+    delete stash.stash_id;
+  });
   jsonfile.writeFile(stashes_file, stashes_data, (error) => { console.error(error) });
 }

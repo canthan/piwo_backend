@@ -1,6 +1,6 @@
 function formatSingleStash(stash) {
   const single_stash = {};
-  single_stash['batch_number'] = stash.batch_number;
+  single_stash['batch_id'] = stash.batch_id;
   single_stash['stash_name'] = stash.stash_name;
   single_stash['stash_id'] = stash.stash_id;
   single_stash['items'] = {};
@@ -23,7 +23,6 @@ function checkIfKeyIsBottleType(key, regex) {
     false;
 }
 
-// export default formatSingleStash;
 module.exports = {
   formatSingleStash,
 };
