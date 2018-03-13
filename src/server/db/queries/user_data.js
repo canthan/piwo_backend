@@ -8,20 +8,20 @@ function getUserData(user_id) {
 
 function getUserBatches(user_id) {
   return knex('batches')
-    .select('batch_number', 'batch_name', 'bottled_on', 'quantity_litres', 'quantity_bottles', 'quantity_crates')
+    .select('batch_id', 'batch_name', 'bottled_on', 'quantity_litres', 'quantity_bottles', 'quantity_crates')
     .where({ batch_user_id: parseInt(user_id) });
 }
 
 function getUserStashes(user_id) {
   return knex('stashes')
-    .select('batch_number', 'stash_name', 'stash_id', 'b050', 'b040', 'b033')
-    .where({ stashes_user_id: parseInt(user_id) });
+    .select('batch_id', 'stash_name', 'stash_id', 'b050', 'b040', 'b033')
+    .where({ stash_user_id: parseInt(user_id) });
 }
 
-function getUserBatchesStashes(user_id, batch_number) {
+function getUserBatchesStashes(user_id, batch_id) {
   return knex('stashes')
     .select('stash_name', 'b050', 'b040', 'b033')
-    .where({ batch_number: parseInt(batch_id), stashes_user_id: parseInt(user_id) });
+    .where({ batch_id: parseInt(batch_id), stash_user_id: parseInt(user_id) });
 }
 
 module.exports = {
