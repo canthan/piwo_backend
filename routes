@@ -1,0 +1,21 @@
+localhost:1337
+
+# USERS
+GET /api/v1.0/users
+GET /api/v1.0/users/:user_id
+
+# USER DATA
+GET /api/v1.0/user_data/:user_id
+
+# BATCHES
+GET /api/v1.0/batches
+GET /api/v1.0/batches/:user_id
+POST /api/v1.0/batches/:user_id
+DELETE /api/v1.0/batches/:user_id/:batch_id
+
+# STASHES
+GET /api/v1.0/stashes
+GET /api/v1.0/stashes/:stash_id
+GET /api/v1.0/stashes/:user_id/:batch_id
+PUT /api/v1.0/stashes/:user_id/:batch_id
+POST /api/v1.0/stashes/:user_id/:batch_id
