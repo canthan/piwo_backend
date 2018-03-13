@@ -11,7 +11,7 @@ exports.up = (knex, Promise) => {
       table.date('registration_date').notNullable();
     })
     .createTable('batches', (table) => {
-      table.integer('batch_number').notNullable().unique().primary();
+      table.integer('batch_id').notNullable().unique().primary();
       table.integer('batch_user_id').references('user_id').inTable('users');
       table.string('batch_name').notNullable();
       table.date('bottled_on');

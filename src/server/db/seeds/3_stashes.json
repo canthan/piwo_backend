@@ -1,1 +1,90 @@
-[{"stashes_user_id":1,"batch_number":5,"stash_id":5,"stash_name":"Piwnica","b050":25,"b040":2,"b033":1},{"stashes_user_id":2,"batch_number":4,"stash_id":6,"stash_name":"Dom","b050":5,"b040":2,"b033":1},{"stashes_user_id":2,"batch_number":5,"stash_id":7,"stash_name":"Piwnica","b050":25,"b040":2,"b033":1},{"stashes_user_id":1,"batch_number":2,"stash_id":2,"stash_name":"Dom","b050":3,"b040":2,"b033":1},{"stashes_user_id":1,"batch_number":2,"stash_id":1,"stash_name":"Piwnica","b050":10,"b040":3,"b033":3},{"stashes_user_id":1,"batch_number":4,"stash_id":3,"stash_name":"Piwnica","b050":20,"b040":5,"b033":3},{"stashes_user_id":1,"batch_number":4,"stash_id":4,"stash_name":"Dom","b050":5,"b040":2,"b033":1}]
+[
+  {
+    "stash_user_id": 1,
+    "batch_id": 5,
+    "stash_name": "Piwnica",
+    "b050": 25,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 2,
+    "batch_id": 4,
+    "stash_name": "Dom",
+    "b050": 5,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 2,
+    "batch_id": 5,
+    "stash_name": "Piwnica",
+    "b050": 25,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 4,
+    "stash_name": "Piwnica",
+    "b050": 20,
+    "b040": 5,
+    "b033": 3
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 4,
+    "stash_name": "Dom",
+    "b050": 5,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 2,
+    "stash_name": "Dom",
+    "b050": 3,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 2,
+    "stash_name": "Piwnica",
+    "b050": 10,
+    "b040": 3,
+    "b033": 3
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 8,
+    "stash_name": "Dom",
+    "b050": 30,
+    "b040": 2,
+    "b033": 1
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 8,
+    "stash_name": "Piwnica",
+    "b050": 10,
+    "b040": 3,
+    "b033": 3
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 7,
+    "stash_name": "Dom",
+    "b050": 33,
+    "b040": 2,
+    "b033": 10
+  },
+  {
+    "stash_user_id": 1,
+    "batch_id": 7,
+    "stash_name": "Piwnica",
+    "b050": 10,
+    "b040": 3,
+    "b033": 8
+  }
+]
