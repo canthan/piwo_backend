@@ -2,7 +2,7 @@ const knex = require('../connection');
 
 function getAllUsers() {
   return knex('users')
-  .select('*');
+  .select('username', 'firstname', 'surname', 'password', 'email', 'registration_date');
 }
 
 function getSingleUser(id) {
