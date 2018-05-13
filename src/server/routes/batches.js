@@ -36,9 +36,12 @@ router.post(`${BASE_URL}/:user_id`, koaBody(), async (ctx) => {
     newBatch['quantity_litres'] = 0;
     newBatch['quantity_bottles'] = 0;
     newBatch['quantity_crates'] = 0;
+    newBatch.batch_user_id = ctx.params.user_id;
     let batch = await queries.insertBatch(newBatch);
     batch = JSON.parse(JSON.stringify(...batch));
+    batch['stashes'] = [];
     delete batch.batch_user_id;
+
     if (batch) {
       ctx.status = 201;
       ctx.body = {
@@ -59,10 +62,13 @@ router.post(`${BASE_URL}/:user_id`, koaBody(), async (ctx) => {
 
 router.delete(`${BASE_URL}/:user_id/:batch_id`, async (ctx) => {
   try {
-    let deletedRecords = [];
+    let deletedRecords = {
+      stashes: [],
+      batches: [],
+    };
     await deleteStashes(ctx.params.user_id, ctx.params.batch_id, deletedRecords);
     await deleteBatch(ctx.params.batch_id, deletedRecords);
-    if (deletedRecords.length) {
+    if (deletedRecords.batches.length) {
       ctx.status = 200;
       ctx.body = {
         status: 'success',
@@ -80,14 +86,14 @@ router.delete(`${BASE_URL}/:user_id/:batch_id`, async (ctx) => {
   }
 })
 
-deleteStashes = async (user_id, batch_id, deletedRecords = []) => {
+deleteStashes = async (user_id, batch_id, deletedRecords) => {
   const deleted = await stash_queries.deleteStashesFromBatch(user_id, batch_id);
-  deletedRecords.push(deleted);
+  deletedRecords.stashes = deleted;
 }
 
-deleteBatch = async (batch_id, deletedRecords = []) => {
+deleteBatch = async (batch_id, deletedRecords) => {
   const deleted = await queries.deleteBatch(batch_id);
-  deletedRecords.push(deleted);
+  deletedRecords.batches = deleted;
 }
 
 module.exports = router;

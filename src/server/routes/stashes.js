@@ -78,7 +78,7 @@ router.post(`${BASE_URL}/:user_id/:batch_id`, koaBody(), async (ctx) => {
       ctx.status = 201;
       ctx.body = {
         status: 'success',
-        data: stash
+        data: stash[0]
       };
     } else {
       ctx.status = 400;
