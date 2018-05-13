@@ -8,7 +8,7 @@ function getUserData(user_id) {
 
 function getUserBatches(user_id) {
   return knex('batches')
-    .select('batch_id', 'batch_name', 'bottled_on', 'quantity_litres', 'quantity_bottles', 'quantity_crates')
+    .select('batch_id', 'batch_number', 'batch_name', 'bottled_on', 'quantity_litres', 'quantity_bottles', 'quantity_crates')
     .where({ batch_user_id: parseInt(user_id) });
 }
 
