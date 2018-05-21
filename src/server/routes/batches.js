@@ -6,7 +6,7 @@ const stash_queries = require('../db/queries/stashes');
 const router = new Router();
 const BASE_URL = `/api/v1.0/batches`;
 
-router.get(BASE_URL, async (ctx) => {
+router.get(BASE_URL, async ctx => {
   try {
     const batches = await queries.getAllBatches();
     ctx.body = {
@@ -14,23 +14,23 @@ router.get(BASE_URL, async (ctx) => {
       data: batches
     };
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
-router.get(`${BASE_URL}/:user_id`, async (ctx) => {
+router.get(`${BASE_URL}/:user_id`, async ctx => {
   try {
-    const batches = await queries.getBatchesOfUser(ctx.params.user_id)
+    const batches = await queries.getBatchesOfUser(ctx.params.user_id);
     ctx.body = {
       status: 'success',
       data: batches
     };
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-})
+});
 
-router.post(`${BASE_URL}/:user_id`, koaBody(), async (ctx) => {
+router.post(`${BASE_URL}/:user_id`, koaBody(), async ctx => {
   try {
     const newBatch = ctx.request.body;
     newBatch['quantity_litres'] = 0;
@@ -60,13 +60,17 @@ router.post(`${BASE_URL}/:user_id`, koaBody(), async (ctx) => {
   }
 });
 
-router.delete(`${BASE_URL}/:user_id/:batch_id`, async (ctx) => {
+router.delete(`${BASE_URL}/:user_id/:batch_id`, async ctx => {
   try {
     let deletedRecords = {
       stashes: [],
-      batches: [],
+      batches: []
     };
-    await deleteStashes(ctx.params.user_id, ctx.params.batch_id, deletedRecords);
+    await deleteStashes(
+      ctx.params.user_id,
+      ctx.params.batch_id,
+      deletedRecords
+    );
     await deleteBatch(ctx.params.batch_id, deletedRecords);
     if (deletedRecords.batches.length) {
       ctx.status = 200;
@@ -84,16 +88,37 @@ router.delete(`${BASE_URL}/:user_id/:batch_id`, async (ctx) => {
   } catch (error) {
     console.error(error);
   }
-})
+});
+
+router.put(`${BASE_URL}/:user_id/:batch_id`, koaBody(), async (ctx) => {
+  try {
+    const batch = await queries.updateBatch(ctx.params.user_id, ctx.params.batch_id, ctx.request.body.batch)
+    if (batch) {
+      ctx.status = 200;
+      ctx.body = { data: batch };
+    } else {
+      ctx.status = 404;
+      ctx.body = {
+        status: 'error',
+        message: 'That batch does not exist.'
+      };
+    }
+  } catch (error) {
+    ctx.body = {
+      status: 'error',
+      message: error.message || 'Sorry, an error has occurred.'
+    };
+  }
+});
 
 deleteStashes = async (user_id, batch_id, deletedRecords) => {
   const deleted = await stash_queries.deleteStashesFromBatch(user_id, batch_id);
   deletedRecords.stashes = deleted;
-}
+};
 
 deleteBatch = async (batch_id, deletedRecords) => {
   const deleted = await queries.deleteBatch(batch_id);
   deletedRecords.batches = deleted;
-}
+};
 
 module.exports = router;

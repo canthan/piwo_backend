@@ -17,11 +17,18 @@ function insertBatch(batch) {
     .returning('*');
 }
 
-function deleteBatch(batchNumber) {
+function deleteBatch(batch_id) {
   return knex('batches')
     .del()
-    .where({ batch_id: parseInt(batchNumber) })
+    .where({ batch_id: parseInt(batch_id) })
     .returning("*");
+}
+
+function updateBatch(user_id, batch_id, batch) {
+  return knex('batches')
+    .update(batch)
+    .where({ batch_id: parseInt(batch_id), batch_user_id: parseInt(user_id) })
+    .returning('*');
 }
 
 module.exports = {
@@ -29,4 +36,5 @@ module.exports = {
   insertBatch,
   getAllBatches,
   getBatchesOfUser,
+  updateBatch,
 };

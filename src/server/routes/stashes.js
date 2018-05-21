@@ -50,9 +50,13 @@ router.get(`${BASE_URL}/:user_id/:batch_id`, async (ctx) => {
 router.put(`${BASE_URL}/:user_id/:batch_id`, koaBody(), async (ctx) => {
   try {
     const stashes = await singleStashUpdate(ctx.request.body.stashes);
+    let stashes_output = [];
+    stashes.forEach((stash) => {
+      stashes_output.push(common.formatSingleStash(stash));
+    });
     if (areThereAnyStashes(stashes)) {
       ctx.status = 200;
-      ctx.body = stashes;
+      ctx.body = { data: stashes_output };
     } else {
       ctx.status = 404;
       ctx.body = {
