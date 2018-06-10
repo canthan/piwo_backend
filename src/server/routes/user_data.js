@@ -22,14 +22,6 @@ router.get(`${BASE_URL}/:user_id`, async (ctx) => {
       formatted_stashes.push(common.formatSingleStash(stash));
     });
 
-    user_batches.forEach((batch, index) => {
-      user_batches[index]['stashes'] = [];
-      formatted_stashes.forEach((stash) => {
-        if (batch.batch_id === stash.batch_id) {
-          user_batches[index].stashes.push(stash);
-        }
-      })
-    });
     output_data['batches'] = user_batches;
     output_data['stashes'] = formatted_stashes;
 
