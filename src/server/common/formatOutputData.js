@@ -23,6 +23,20 @@ function checkIfKeyIsBottleType(key, regex) {
     false;
 }
 
+function fetchStashesToBatches(batches, stashes) {
+  batches.forEach((batch, index) => {
+    batches[index]['stashes'] = [];
+    stashes.forEach((stash) => {
+      if (batch.batch_id === stash.batch_id) {
+        batches[index].stashes.push(stash);
+      }
+    })
+  });
+
+  return batches;
+}
+
 module.exports = {
   formatSingleStash,
+  fetchStashesToBatches,
 };
