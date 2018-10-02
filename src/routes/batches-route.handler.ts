@@ -46,25 +46,6 @@ export class BatchesRouteHandlers {
 		deletedRecords.batches = deleted;
 	};
 
-	public getBatches = async (
-		ctx: Context,
-		next: AnyFunction
-	): Promise<void> => {
-		logger.info('test');
-		try {
-			logger.info(`Getting all batches from database`);
-			const batches = await this.batchQueries.getAllBatches();
-			logger.info(`Got ${batches.length} batches`);
-
-			ctx.body = {
-				status: HTTP_STATUS.OK,
-				data: batches,
-			};
-		} catch (error) {
-			ctx.throw(ctx.status, error);
-		}
-	};
-
 	public getBatchByUserId = async (
 		ctx: Context,
 		next: AnyFunction
