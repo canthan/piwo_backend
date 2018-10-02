@@ -14,6 +14,7 @@
 		"test": "node ./node_modules/mocha/bin/_mocha",
 		"migrate": "knex migrate:rollback && knex migrate:latest --env development",
 		"seed:save": "node ./build/db/saveSeeds.js",
+		"seed:save-js": "node ./src/db/saveSeeds.js",
 		"seed": "knex seed:run --env development",
 		"db:up": "npm run migrate && npm run seed && npm start"
 	},
