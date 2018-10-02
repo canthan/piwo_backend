@@ -5,7 +5,6 @@ export class BatchesRouter {
 	public static init(router: Router, path: string = '/batches') {
 		const batchesRouteHandlers = new BatchesRouteHandlers();
 
-		router.get(path, batchesRouteHandlers.getBatches);
 		router.get(`${path}/:userId`, batchesRouteHandlers.getBatchByUserId);
 		router.post(`${path}/:userId`, batchesRouteHandlers.addBatch);
 		router.put(`${path}/:userId/:batchId`, batchesRouteHandlers.editBatch);

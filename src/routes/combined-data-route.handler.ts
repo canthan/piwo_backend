@@ -38,8 +38,7 @@ export class CombinedDataRouteHandlers {
 			let batches = await this.combinedDataQueries.getUserBatches(id);
 			let stashes = await this.combinedDataQueries.getUserStashes(id);
 
-			let outputData: UserData = JSON.parse(JSON.stringify(user[0]));
-			outputData = Object.assign(outputData);
+			const outputData: UserData = JSON.parse(JSON.stringify(user[0]));
 
 			batches = JSON.parse(JSON.stringify(batches));
 
